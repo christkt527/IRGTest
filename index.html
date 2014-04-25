@@ -1,3 +1,39 @@
+<!DOCTYPE html>
 <html>
-
+  
+  
+<head>
+<script>
+  
+  window.onload = function()
+  {
+    document.addEventListener("deviceready", init, false);  
+  }
+  
+  funtion init()
+  {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  }
+  
+  funtion onSuccess(position)
+  {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    
+    document.getElementById("lat").innerHTML = latitude;
+    docuemnt.getElementById("long").innerHTML = longitude;
+  }
+  
+  function onError(error)
+  {
+    alert(error.message);
+  }
+  
+  
+</script>
+</head>
+<body>
+     Latitude: <span id = "lat"></span>
+     Longitude: <span id = "long"></span>
+</body>
 </html>
