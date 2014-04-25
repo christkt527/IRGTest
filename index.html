@@ -4,10 +4,17 @@
   
 <head>
 <script>
+
+  window.onload = function()
+  {
+    init();
+  
+  }
   
   funtion init()
   {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, enableHighAccuracy: true);
   }
   
   funtion onSuccess(position)
