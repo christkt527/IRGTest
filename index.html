@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
-  
-  
-<head>
-<script type="text/javascript" src="cordova-2.6.0.js"></script>
-<script>
+  <head>
+    <title>Device Properties Example</title>
 
-  window.onload = function()
-  {
-    document.addEventListener("deviceready", init, false);
-  }
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.3.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
-  funtion init()
-  {
-    var options = ( enableHighAccuracy: true ); 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-  
-  }
-  funtion onSuccess(position)
-  {
-      var latitude = position.coords.latitude;
-      var longitude = position.coords.longitude;
-      
-      document.getElementById("lat").innerHTML = latitude;
-      document.getElementById("long").innerHTML = longitude;
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
 
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
 
-  }
-  
-  function onError(error)
-  {
-    alert(error.message);
-  }
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + new Date(position.timestamp)          + '<br />';
+    }
 
-</script>
-</head>
-<body>
-    Latitude: <span id="lat"></span>
-    Longitude: <span id="long"></span>
-</body>
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    </script>
+  </head>
+  <body>
+    <p id="geolocation">Finding geolocation...</p>
+  </body>
 </html>
