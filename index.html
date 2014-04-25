@@ -15,7 +15,7 @@
     var options = ( enableHighAccuracy: true ); 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
   
-  
+  }
   funtion onSuccess(position)
   {
       var latitude = position.coords.latitude;
@@ -31,8 +31,7 @@
   {
     alert(error.message);
   }
-  }
-  init();
+
 </script>
 </head>
 <body>
